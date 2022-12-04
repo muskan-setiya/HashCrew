@@ -1,0 +1,32 @@
+.content-container {
+    padding: 10%;
+    height: 120vh;
+    background-color: white;
+    font-size: 64px;
+    align-items: center;
+}
+.row{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+.left-panel {
+    background-color: white;
+    width: 30%;
+    height: 20%;
+    align-items: center;
+}
+.right-panel {
+    background-color: white;
+    width: 70%;
+    height: 100%;
+    
+}
+.box {
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+}
+.center {
+    text-align: center;
+}

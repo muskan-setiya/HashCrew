@@ -20,13 +20,17 @@ The project NFTDocs has 3 user roles.
 
 We can assume that the college or institution is the issuer, student having wallet is the holder and verifier is a third-party which verifies and thus providing authenticity and integrity. The institutions store the student's data in thefirebase.
 
-The generator fetches information from the firebase, applies digital signature and encrypts the metadata, Further he mints it.
-On the otherhand, student is able to create it's own identity, then he decrypts his data.
+The generator fetches student information from the firebase which is the local DB of the college, applies digital signature and encrypts the metadata with students public key, Further he mints the document and the feedback in the form of encrypted metadata to the respective student.
+On the otherhand, student decrypts the data with his private key and is able to see his result.
+Generator sends a CGPA claim which tells about how much CGPA student got along with the encrypted data which is useful for student while sitting for his placements. 
 
-Also the institutions claims a certain range for cgpa (like above 8.0) and if the student satisfies the condition then and then only he would be able to scan, proceed further and give the assessments required by party.
-Verifier would be the third party(Usually HR of the company) that will verify the marksheet sent by student and if the verification is successful, then the third party would generate a claim using Polygon ID stating that student is verified.
+Student is given the functionality to create his own identity using the create Identity functionality which makes it easy for the student to store the credentials in his metamask wallet.
 
-NOTE : Third Party company is the one who wants to hire the student for job.
+After getting his marksheet, suppose if student sits for the placements in the company then he needs to verify his credentials with the company. Company sets a criteria of CGPA>8 allowing only those students to sit for placements who have their CGPA > 8.(This criteria can differ for every company)
+
+Company here acts as an Verifier which sets up the request of CGPA>8 which student should satisfy via his CGPA claim. Here on chain verification of student takes place and If students satisifies the criteria then he is able to visit the Documents verification page where his digital signature is checked and if it verifier successfully student is given a Verification claim stating he is eligible to sit for the company's online assessment by proving on chain he has the verification claim.
+
+NOTE : company is the one who wants to hire the student for job.
 
 
 ## Technology Stack and Tools
@@ -62,19 +66,13 @@ $ npm install @mui/material @emotion/react @emotion/styled
 ```
 $ npm install @mui/material @mui/styled-engine-sc styled-components
 ```
-### 4. Connect development blockchain accounts to Metamask
-- Copy private key of the addresses and import to Metamask
-- Connect your metamask to hardhat blockchain, network 127.0.0.1:8545.
-- If you have not added hardhat to the list of networks on your metamask, open up a browser, click the fox icon, then click the top center dropdown button that lists all the available networks then click add networks. A form should pop up. For the "Network Name" field enter "Hardhat". For the "New RPC URL" field enter "http://127.0.0.1:8545". For the chain ID enter "31337". Then click save.  
 
-
-
-### 5. Migrate Smart Contracts
+### Migrate Smart Contracts
 ```
-$ npx hardhat run src/backend/scripts/deploy.js --network localhost
+$ npx hardhat run src/backend/scripts/deploy.js --network polygon
 ```
 
-### 6. Launch Application
+### Launch Application
 ```
 $ npm run start
 ```
